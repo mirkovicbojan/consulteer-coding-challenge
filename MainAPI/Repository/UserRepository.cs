@@ -6,9 +6,9 @@ namespace MainAPI.Repository
 {
     public class UserRepository : Repository<User>, IUserRepository
     {
-        private UserDbContext _dbContext;
+        private AppDbContext _dbContext;
 
-        public UserRepository(UserDbContext dbContext) : base(dbContext)
+        public UserRepository(AppDbContext dbContext) : base(dbContext)
         {
             _dbContext = dbContext;
         }

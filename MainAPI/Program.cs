@@ -8,7 +8,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<UserDbContext>(
+builder.Services.AddDbContext<AppDbContext>(
     o => o.UseSqlite(builder.Configuration.GetConnectionString("Default Connection"))
         .UseLazyLoadingProxies()
 );

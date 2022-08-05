@@ -3,11 +3,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MainAPI.Context
 {
-    public class UserDbContext : DbContext
+    public class AppDbContext : DbContext
     {
-        public UserDbContext(DbContextOptions<UserDbContext> options) : base(options) { }
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         public DbSet<User> users { get; set; }
+
+        public DbSet<Role> roles { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

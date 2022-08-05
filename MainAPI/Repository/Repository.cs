@@ -5,9 +5,9 @@ namespace MainAPI.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private readonly UserDbContext context;
+        private readonly AppDbContext context;
 
-        public Repository(UserDbContext context)
+        public Repository(AppDbContext context)
         {
             this.context = context;
         }
