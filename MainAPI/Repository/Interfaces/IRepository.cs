@@ -5,7 +5,7 @@ namespace MainAPI.Repository.Interfaces
 
         IEnumerable<T> GetAll();
 
-        T GetById(int? id);
+        T GetById(Guid? id);
 
         T Save(T obj);
 

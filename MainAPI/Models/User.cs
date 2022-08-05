@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace MainAPI.Models
 {
     public class User
@@ -10,9 +12,8 @@ namespace MainAPI.Models
 
         public string? password { get; set; }
 
-        public bool CanViewAllUsers { get; set; }
-
-        public bool isRoleAdmin { get; set; }
-
+        [ForeignKey("roleID")]
+        public Guid? roleID { get; set; }
+        public virtual Role? role { get; set; }
     }
 }

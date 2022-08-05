@@ -18,7 +18,7 @@ namespace MainAPI.Repository
             return context.Set<T>().ToList();
         }
 
-        public T GetById(int? id)
+        public T GetById(Guid? id)
         {
             context.ChangeTracker.QueryTrackingBehavior = Microsoft.EntityFrameworkCore.QueryTrackingBehavior.NoTracking;
             T item = context.Set<T>().Find(id)
