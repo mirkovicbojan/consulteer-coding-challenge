@@ -21,7 +21,7 @@ namespace MainAPI.Controllers
         {
             return Ok(_userService.Save(obj));
         }
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Get()
         {
