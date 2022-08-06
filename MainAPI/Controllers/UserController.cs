@@ -16,27 +16,11 @@ namespace MainAPI.Controllers
             _userService = userService;
         }
 
-        [HttpPost]
-        public IActionResult Save(UserPostDTO obj)
-        {
-            return Ok(_userService.Save(obj));
-        }
         [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Get()
         {
             return Ok(_userService.GetAll());
-        }
-
-        [HttpGet("{id}")]
-        public IActionResult GetOne(Guid id)
-        {
-            User user = _userService.GetOne(id);
-            if (user == null)
-            {
-                return BadRequest("Client not found");
-            }
-            return Ok(user);
         }
     }
 }

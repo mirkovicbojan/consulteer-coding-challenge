@@ -51,7 +51,7 @@ namespace MainAPI.Controllers
         }
 
         [HttpPut]
-        public ActionResult<Role> UpdateClient(Role obj)
+        public ActionResult<Role> UpdateRole(Role obj)
         {
             var role = _roleService.GetOne(obj.Id);
             if (role == null)

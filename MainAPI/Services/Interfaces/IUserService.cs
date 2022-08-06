@@ -1,4 +1,3 @@
-
 using MainAPI.Models;
 
 namespace MainAPI.Services.Interfaces
@@ -9,8 +8,10 @@ namespace MainAPI.Services.Interfaces
 
         public User GetOne(Guid id);
 
-        public User Save(UserPostDTO obj);
+        public User Save(RegisterDTO obj);
 
         public User CredentialCheck(string email, string password);
+
+        public bool checkAvailability(RegisterDTO obj);
     }
 }

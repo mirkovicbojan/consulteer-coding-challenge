@@ -25,7 +25,7 @@ namespace MainAPI.Services
             return retVal;
         }
 
-        public Role GetOne(Guid id)
+        public Role GetOne(Guid? id)
         {
             var retVal = _roleRepository.GetById(id);
 

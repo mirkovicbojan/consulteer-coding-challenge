@@ -13,7 +13,7 @@ namespace MainAPI.Models
         public string? password { get; set; }
 
         [ForeignKey("roleID")]
-        public Guid roleID { get; set; }
+        public Guid? roleID { get; set; }
         public virtual Role? role { get; set; }
     }
 }

@@ -6,7 +6,7 @@ namespace MainAPI.Services.Interfaces
     {
         public IEnumerable<Role> GetAll();
 
-        public Role GetOne(Guid id);
+        public Role GetOne(Guid? id);
 
         public Role Save(Role obj);
 

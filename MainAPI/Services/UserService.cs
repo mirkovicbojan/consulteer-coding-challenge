@@ -37,27 +37,38 @@ namespace MainAPI.Services
             return retVal;
         }
 
-        public User Save(UserPostDTO obj)
+        public User Save(RegisterDTO obj)
         {
             var user = new User();
-            user.Id = obj.Id;
+            Guid generate = System.Guid.NewGuid();
+            user.Id = generate;
             user.email = obj.email;
             user.password = obj.password;
             user.username = obj.username;
-            user.roleID = obj.roleID;
+            user.roleID = null;
             user.role = null;
-            
+            //Done like this for easier debugging if something goes wrong.
            return _userRepository.Save(user);
         }
 
         public User CredentialCheck(string email, string password)
         {
-            var userLogin = _userRepository.findByCredentials(email);
+            var userLogin = _userRepository.findByEmail(email);
             if(userLogin.password != password || userLogin == null)
             {
                 throw new UnauthorizedAccessException("Entered credentials are incorrect.");
             }
             return userLogin;
+        }
+
+        public bool checkAvailability(RegisterDTO obj)
+        {
+            var credentialsCheck = _userRepository.findByCredentials(obj.email, obj.username);
+            if(credentialsCheck != null)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }
