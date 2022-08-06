@@ -6,7 +6,7 @@ namespace MainAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RoleController:Controller
+    public class RoleController : Controller
     {
         public IRoleService _roleService;
 

@@ -17,7 +17,7 @@ namespace MainAPI.Services
         {
             var retVal = _roleRepository.GetAll();
 
-            if(retVal.Count() == 0)
+            if (retVal.Count() == 0)
             {
                 return null;
             }
@@ -29,7 +29,7 @@ namespace MainAPI.Services
         {
             var retVal = _roleRepository.GetById(id);
 
-            if(retVal == null)
+            if (retVal == null)
             {
                 throw new KeyNotFoundException("Role not found.");
             }
@@ -40,7 +40,7 @@ namespace MainAPI.Services
         public void DeleteOne(Guid id)
         {
             var retVal = _roleRepository.GetById(id);
-            if(retVal == null)
+            if (retVal == null)
             {
                 throw new KeyNotFoundException("Role not found");
             }
@@ -52,7 +52,7 @@ namespace MainAPI.Services
         {
             var retVal = _roleRepository.GetById(obj.Id);
 
-            if(retVal == null)
+            if (retVal == null)
             {
                 throw new KeyNotFoundException("Role not found.");
             }

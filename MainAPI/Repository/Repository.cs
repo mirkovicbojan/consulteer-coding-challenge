@@ -21,9 +21,7 @@ namespace MainAPI.Repository
         public T GetById(Guid? id)
         {
             context.ChangeTracker.QueryTrackingBehavior = Microsoft.EntityFrameworkCore.QueryTrackingBehavior.NoTracking;
-            T item = context.Set<T>().Find(id)
-
-;
+            T item = context.Set<T>().Find(id);
             return item ?? null;
         }
 

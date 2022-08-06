@@ -18,7 +18,7 @@ namespace MainAPI.Services
         public IEnumerable<User> GetAll()
         {
             var retVal = _userRepository.GetAll();
-            if(retVal.Count() == 0)
+            if (retVal.Count() == 0)
             {
                 return null;
             }
@@ -29,23 +29,25 @@ namespace MainAPI.Services
         {
             var retVal = _userRepository.GetById(id);
 
-            if(retVal == null)
+            if (retVal == null)
             {
                 return null;
             }
 
             return retVal;
         }
+
         public User GetCurrentUser(string email)
         {
             var retVal = _userRepository.findByEmail(email);
-            if(retVal == null)
+            if (retVal == null)
             {
                 return null;
             }
 
             return retVal;
         }
+        
         public User Save(RegisterDTO obj)
         {
             var user = new User();
@@ -57,13 +59,13 @@ namespace MainAPI.Services
             user.roleID = null;
             user.role = null;
             //Done like this for easier debugging if something goes wrong.
-           return _userRepository.Save(user);
+            return _userRepository.Save(user);
         }
 
         public User CredentialCheck(string email, string password)
         {
             var userLogin = _userRepository.findByEmail(email);
-            if(userLogin.password != password || userLogin == null)
+            if (userLogin.password != password || userLogin == null)
             {
                 throw new UnauthorizedAccessException("Entered credentials are incorrect.");
             }
@@ -73,7 +75,7 @@ namespace MainAPI.Services
         public bool checkAvailability(RegisterDTO obj)
         {
             var credentialsCheck = _userRepository.findByCredentials(obj.email, obj.username);
-            if(credentialsCheck != null)
+            if (credentialsCheck != null)
             {
                 return false;
             }

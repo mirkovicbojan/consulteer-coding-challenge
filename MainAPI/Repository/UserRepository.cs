@@ -12,7 +12,7 @@ namespace MainAPI.Repository
         {
             _dbContext = dbContext;
         }
-        
+
         public User findByCredentials(string email, string username)
         {
             var user = _dbContext.Set<User>().Where(u => u.email == email || u.username == username).FirstOrDefault();

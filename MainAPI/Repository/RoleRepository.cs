@@ -9,7 +9,7 @@ namespace MainAPI.Repository
     {
         private AppDbContext _dbContext;
 
-        public RoleRepository(AppDbContext dbContext):base(dbContext)
+        public RoleRepository(AppDbContext dbContext) : base(dbContext)
         {
             _dbContext = dbContext;
         }
