@@ -53,6 +53,7 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 builder.Services.AddScoped<IRoleService, RoleService>();
+builder.Services.AddHttpContextAccessor();
 
 //Authentication Service
 var key = Encoding.ASCII.GetBytes(configuration["JWT:Key"]);

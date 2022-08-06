@@ -36,7 +36,16 @@ namespace MainAPI.Services
 
             return retVal;
         }
+        public User GetCurrentUser(string email)
+        {
+            var retVal = _userRepository.findByEmail(email);
+            if(retVal == null)
+            {
+                return null;
+            }
 
+            return retVal;
+        }
         public User Save(RegisterDTO obj)
         {
             var user = new User();

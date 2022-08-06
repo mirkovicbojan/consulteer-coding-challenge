@@ -8,10 +8,13 @@ namespace MainAPI.Services.Interfaces
 
         public User GetOne(Guid id);
 
+        public User GetCurrentUser(string email);
+
         public User Save(RegisterDTO obj);
 
         public User CredentialCheck(string email, string password);
 
         public bool checkAvailability(RegisterDTO obj);
+
     }
 }
