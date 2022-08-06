@@ -14,6 +14,7 @@ namespace MainAPI.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    roleName = table.Column<string>(type: "TEXT", nullable: true),
                     CanViewAllUsers = table.Column<bool>(type: "INTEGER", nullable: false),
                     isAdmin = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
@@ -30,7 +31,7 @@ namespace MainAPI.Migrations
                     username = table.Column<string>(type: "TEXT", nullable: true),
                     email = table.Column<string>(type: "TEXT", nullable: true),
                     password = table.Column<string>(type: "TEXT", nullable: true),
-                    roleID = table.Column<Guid>(type: "TEXT", nullable: true)
+                    roleID = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -39,7 +40,8 @@ namespace MainAPI.Migrations
                         name: "FK_users_roles_roleID",
                         column: x => x.roleID,
                         principalTable: "roles",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

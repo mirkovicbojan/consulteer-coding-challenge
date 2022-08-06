@@ -19,7 +19,7 @@ namespace MainAPI.Migrations
 
             modelBuilder.Entity("MainAPI.Models.Role", b =>
                 {
-                    b.Property<Guid?>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
@@ -49,7 +49,7 @@ namespace MainAPI.Migrations
                     b.Property<string>("password")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid?>("roleID")
+                    b.Property<Guid>("roleID")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("username")
@@ -66,7 +66,9 @@ namespace MainAPI.Migrations
                 {
                     b.HasOne("MainAPI.Models.Role", "role")
                         .WithMany()
-                        .HasForeignKey("roleID");
+                        .HasForeignKey("roleID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("role");
                 });

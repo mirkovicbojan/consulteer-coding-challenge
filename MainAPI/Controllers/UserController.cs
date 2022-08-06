@@ -1,5 +1,6 @@
 using MainAPI.Models;
 using MainAPI.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MainAPI.Controllers
@@ -16,11 +17,11 @@ namespace MainAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Save(User obj)
+        public IActionResult Save(UserPostDTO obj)
         {
             return Ok(_userService.Save(obj));
         }
-
+        [Authorize]
         [HttpGet]
         public IActionResult Get()
         {

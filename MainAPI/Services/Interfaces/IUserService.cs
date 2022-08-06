@@ -9,7 +9,8 @@ namespace MainAPI.Services.Interfaces
 
         public User GetOne(Guid id);
 
-        public User Save(User obj);
+        public User Save(UserPostDTO obj);
 
+        public User CredentialCheck(string email, string password);
     }
 }

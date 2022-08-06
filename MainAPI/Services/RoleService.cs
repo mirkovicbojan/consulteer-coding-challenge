@@ -31,7 +31,7 @@ namespace MainAPI.Services
 
             if(retVal == null)
             {
-                return null;
+                throw new KeyNotFoundException("Role not found.");
             }
 
             return retVal;

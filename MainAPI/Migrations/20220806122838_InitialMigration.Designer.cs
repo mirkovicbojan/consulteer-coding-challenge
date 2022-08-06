@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MainAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220805221330_InitialMigration")]
+    [Migration("20220806122838_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,7 +21,7 @@ namespace MainAPI.Migrations
 
             modelBuilder.Entity("MainAPI.Models.Role", b =>
                 {
-                    b.Property<Guid?>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
@@ -30,6 +30,9 @@ namespace MainAPI.Migrations
 
                     b.Property<bool>("isAdmin")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("roleName")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -48,7 +51,7 @@ namespace MainAPI.Migrations
                     b.Property<string>("password")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid?>("roleID")
+                    b.Property<Guid>("roleID")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("username")
@@ -65,7 +68,9 @@ namespace MainAPI.Migrations
                 {
                     b.HasOne("MainAPI.Models.Role", "role")
                         .WithMany()
-                        .HasForeignKey("roleID");
+                        .HasForeignKey("roleID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("role");
                 });

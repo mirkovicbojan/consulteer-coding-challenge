@@ -8,6 +8,7 @@ namespace MainAPI.Services
     {
 
         private readonly IUserRepository _userRepository;
+        private readonly IRoleRepository _roleRepository;
 
         public UserService(IUserRepository userRepository)
         {
@@ -36,9 +37,27 @@ namespace MainAPI.Services
             return retVal;
         }
 
-        public User Save(User obj)
+        public User Save(UserPostDTO obj)
         {
-           return _userRepository.Save(obj);
+            var user = new User();
+            user.Id = obj.Id;
+            user.email = obj.email;
+            user.password = obj.password;
+            user.username = obj.username;
+            user.roleID = obj.roleID;
+            user.role = null;
+            
+           return _userRepository.Save(user);
+        }
+
+        public User CredentialCheck(string email, string password)
+        {
+            var userLogin = _userRepository.findByCredentials(email);
+            if(userLogin.password != password || userLogin == null)
+            {
+                throw new UnauthorizedAccessException("Entered credentials are incorrect.");
+            }
+            return userLogin;
         }
     }
 }
