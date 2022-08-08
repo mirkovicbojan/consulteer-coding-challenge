@@ -1,3 +1,4 @@
+using MainAPI.CustomExceptions;
 using MainAPI.Models;
 using MainAPI.Repository.Interfaces;
 using MainAPI.Services.Interfaces;
@@ -20,7 +21,7 @@ namespace MainAPI.Services
             var retVal = _userRepository.GetAll();
             if (retVal.Count() == 0)
             {
-                return null;
+               throw new NoObjectsFoundException("There are no users in database.");
             }
             return retVal;
         }
@@ -31,7 +32,7 @@ namespace MainAPI.Services
 
             if (retVal == null)
             {
-                return null;
+                throw new InvalidParametersException("User ID is invalid.");
             }
 
             return retVal;
@@ -42,7 +43,7 @@ namespace MainAPI.Services
             var retVal = _userRepository.findByEmail(email);
             if (retVal == null)
             {
-                return null;
+                throw new InvalidParametersException("Current user couldn't be found.");
             }
 
             return retVal;

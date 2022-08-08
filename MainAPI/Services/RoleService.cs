@@ -1,3 +1,4 @@
+using MainAPI.CustomExceptions;
 using MainAPI.Models;
 using MainAPI.Repository.Interfaces;
 using MainAPI.Services.Interfaces;
@@ -19,7 +20,7 @@ namespace MainAPI.Services
 
             if (retVal.Count() == 0)
             {
-                return null;
+                throw new NoObjectsFoundException("There are no roles currently defined in the database.");
             }
 
             return retVal;

@@ -1,3 +1,4 @@
+using MainAPI.Contracts;
 using MainAPI.Models;
 using MainAPI.Services;
 using MainAPI.Services.Interfaces;
@@ -12,10 +13,12 @@ namespace MainAPI.Controllers
     {
         private readonly AuthenticationService _authService;
         private readonly IUserService _userService;
-
         private readonly IRoleService _roleService;
 
-        public LoginFormController(AuthenticationService authService, IUserService userService, IRoleService roleService)
+        public LoginFormController(
+            AuthenticationService authService, 
+            IUserService userService, 
+            IRoleService roleService)
         {
             _authService = authService;
             _userService = userService;

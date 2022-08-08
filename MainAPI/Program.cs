@@ -1,7 +1,9 @@
 using System.Text;
 using MainAPI.Authorization;
 using MainAPI.Context;
+using MainAPI.Contracts;
 using MainAPI.Handlers;
+using MainAPI.Middlewares;
 using MainAPI.Repository;
 using MainAPI.Repository.Interfaces;
 using MainAPI.Services;
@@ -11,6 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using NLog;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
@@ -60,7 +63,11 @@ builder.Services.AddSingleton<IAuthorizationHandler, CanViewAllUsersHandler>();
 builder.Services.AddSingleton<IAuthorizationHandler, CanEditRolesHandler>();
 builder.Services.AddHttpContextAccessor();
 
-//Authentication Service
+//Global Exception Handler
+builder.Services.AddSingleton<ILoggerManager, LoggerService>();
+LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
+
+//JWT Authentication Service
 var key = Encoding.ASCII.GetBytes(configuration["JWT:Key"]);
 
 builder.Services.AddAuthentication(a =>
@@ -81,7 +88,8 @@ builder.Services.AddAuthentication(a =>
     };
 });
 builder.Services.AddSingleton<AuthenticationService>(new AuthenticationService(key));
-//
+
+//Policy Based Authorization
 builder.Services.AddAuthorization(options => 
 {
     options.AddPolicy("canViewAllUsers", policy => policy.AddRequirements(
@@ -91,6 +99,7 @@ builder.Services.AddAuthorization(options =>
         new IsAdminRequirement()
     ));
 });
+//
 
 var app = builder.Build();
 
@@ -99,6 +108,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+//Activating the Custom Exception Middleware
+app.ConfigureCustomExceptionMiddleware();
 
 app.UseHttpsRedirection();
 
