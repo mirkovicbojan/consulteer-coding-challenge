@@ -24,7 +24,9 @@ namespace MainAPI.Services
                 Subject = new ClaimsIdentity(new Claim[]
                 {
                     new Claim(ClaimTypes.Email, email),
-                    new Claim(ClaimTypes.Role, role.roleName)
+                    new Claim(ClaimTypes.Role, role.roleName),
+                    new Claim("CanViewAllUsers", role.CanViewAllUsers.ToString()),
+                    new Claim("isAdmin",role.isAdmin.ToString())
                 }),
                 Expires = DateTime.Now.AddHours(1),
                 SigningCredentials = new SigningCredentials

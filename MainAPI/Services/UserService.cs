@@ -81,5 +81,16 @@ namespace MainAPI.Services
             }
             return true;
         }
+
+        public User UpdateRole(UserRoleUpdateDTO obj)
+        {
+            var user = _userRepository.findByEmail(obj.email);
+            if(user == null)
+            {
+                throw new KeyNotFoundException("User not found.");
+            }
+            user.roleID = obj.newRoleId;
+            return _userRepository.Edit(user);
+        }
     }
 }

@@ -21,7 +21,7 @@ namespace MainAPI.Controllers
             _accessor = accessor;
         }
 
-        [Authorize]
+        [Authorize(Policy="canViewAllUsers")]
         [HttpGet]
         [Route("GetAllUsers")]
         public IActionResult GetAllUsers()

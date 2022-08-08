@@ -1,10 +1,13 @@
 using System.Text;
+using MainAPI.Authorization;
 using MainAPI.Context;
+using MainAPI.Handlers;
 using MainAPI.Repository;
 using MainAPI.Repository.Interfaces;
 using MainAPI.Services;
 using MainAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -53,6 +56,8 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 builder.Services.AddScoped<IRoleService, RoleService>();
+builder.Services.AddSingleton<IAuthorizationHandler, CanViewAllUsersHandler>();
+builder.Services.AddSingleton<IAuthorizationHandler, CanEditRolesHandler>();
 builder.Services.AddHttpContextAccessor();
 
 //Authentication Service
@@ -77,6 +82,15 @@ builder.Services.AddAuthentication(a =>
 });
 builder.Services.AddSingleton<AuthenticationService>(new AuthenticationService(key));
 //
+builder.Services.AddAuthorization(options => 
+{
+    options.AddPolicy("canViewAllUsers", policy => policy.AddRequirements(
+        new CanViewAllUsersRequirement()
+    ));
+    options.AddPolicy("isAdmin", policy => policy.AddRequirements(
+        new IsAdminRequirement()
+    ));
+});
 
 var app = builder.Build();
 

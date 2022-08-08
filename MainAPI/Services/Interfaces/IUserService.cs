@@ -16,5 +16,7 @@ namespace MainAPI.Services.Interfaces
 
         public bool checkAvailability(RegisterDTO obj);
 
+        public User UpdateRole(UserRoleUpdateDTO obj);
+
     }
 }
