@@ -18,7 +18,7 @@ namespace MainAPI.Controllers
             _userService = userService;
         }
 
-        [Authorize(Policy="isAdmin")]
+        [Authorize(Policy = "isAdmin")]
         [HttpPost]
         [Route("AddNewRole")]
         public IActionResult Save(Role obj)
@@ -26,7 +26,7 @@ namespace MainAPI.Controllers
             return Ok(_roleService.Save(obj));
         }
 
-        [Authorize(Policy="isAdmin")]
+        [Authorize(Policy = "isAdmin")]
         [HttpGet]
         [Route("GetAllRoles")]
         public IActionResult Get()
@@ -34,9 +34,9 @@ namespace MainAPI.Controllers
             return Ok(_roleService.GetAll());
         }
 
-        [Authorize(Policy="isAdmin")]
+        [Authorize(Policy = "isAdmin")]
         [HttpGet("GetOneRole/{id}")]
-        
+
         public IActionResult GetOne(Guid id)
         {
             var role = _roleService.GetOne(id);
@@ -47,7 +47,7 @@ namespace MainAPI.Controllers
             return Ok(role);
         }
 
-        [Authorize(Policy="isAdmin")]
+        [Authorize(Policy = "isAdmin")]
         [HttpDelete("DeleteRole/{id}")]
         public IActionResult Delete(Guid id)
         {
@@ -60,7 +60,7 @@ namespace MainAPI.Controllers
             return Ok("Role deleted");
         }
 
-        [Authorize(Policy="isAdmin")]
+        [Authorize(Policy = "isAdmin")]
         [HttpPut]
         [Route("UpdateRole")]
         public ActionResult<Role> UpdateRole(Role obj)
@@ -73,7 +73,7 @@ namespace MainAPI.Controllers
             return _roleService.UpdateOne(role);
         }
 
-        [Authorize(Policy="isAdmin")]
+        [Authorize(Policy = "isAdmin")]
         [HttpPost]
         [Route("UpdateUserRole")]
         public ActionResult<User> UpdateUserRole(UserRoleUpdateDTO obj)

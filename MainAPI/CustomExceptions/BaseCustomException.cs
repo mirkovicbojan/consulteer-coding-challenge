@@ -6,8 +6,8 @@ namespace MainAPI.CustomExceptions
     {
         public HttpStatusCode StatusCode;
 
-        public BaseCustomException() {}
+        public BaseCustomException() { }
 
-        public BaseCustomException(string message) : base(message) {}
+        public BaseCustomException(string message) : base(message) { }
     }
 }

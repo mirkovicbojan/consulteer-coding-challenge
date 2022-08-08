@@ -12,11 +12,11 @@ namespace MainAPI.Handlers
         {
             _accessor = accessor;
         }
-        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, 
+        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context,
         IsAdminRequirement requirement)
         {
             var claimValue = _accessor.HttpContext.User.FindFirst("isAdmin").Value;
-            if(claimValue == "True")
+            if (claimValue == "True")
             {
                 context.Succeed(requirement);
             }

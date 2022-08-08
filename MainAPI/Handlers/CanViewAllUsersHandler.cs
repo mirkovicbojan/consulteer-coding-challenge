@@ -1,4 +1,3 @@
-using System.Security.Claims;
 using MainAPI.Authorization;
 using Microsoft.AspNetCore.Authorization;
 
@@ -12,11 +11,11 @@ namespace MainAPI.Handlers
         {
             _accessor = accessor;
         }
-        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, 
+        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context,
         CanViewAllUsersRequirement requirement)
         {
             var claimValue = _accessor.HttpContext.User.FindFirst("CanViewAllUsers").Value;
-            if(claimValue == "True")
+            if (claimValue == "True")
             {
                 context.Succeed(requirement);
             }

@@ -90,7 +90,7 @@ builder.Services.AddAuthentication(a =>
 builder.Services.AddSingleton<AuthenticationService>(new AuthenticationService(key));
 
 //Policy Based Authorization
-builder.Services.AddAuthorization(options => 
+builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("canViewAllUsers", policy => policy.AddRequirements(
         new CanViewAllUsersRequirement()

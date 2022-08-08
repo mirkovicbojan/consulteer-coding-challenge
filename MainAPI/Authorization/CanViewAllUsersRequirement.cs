@@ -4,6 +4,6 @@ namespace MainAPI.Authorization
 {
     public class CanViewAllUsersRequirement : IAuthorizationRequirement
     {
-        
+
     }
 }

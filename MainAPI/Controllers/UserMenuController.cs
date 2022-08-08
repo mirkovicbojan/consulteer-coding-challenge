@@ -1,8 +1,6 @@
 using System.Security.Claims;
-using MainAPI.Models;
 using MainAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MainAPI.Controllers
@@ -21,7 +19,7 @@ namespace MainAPI.Controllers
             _accessor = accessor;
         }
 
-        [Authorize(Policy="canViewAllUsers")]
+        [Authorize(Policy = "canViewAllUsers")]
         [HttpGet]
         [Route("GetAllUsers")]
         public IActionResult GetAllUsers()

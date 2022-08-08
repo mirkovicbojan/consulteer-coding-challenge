@@ -21,7 +21,7 @@ namespace MainAPI.Services
             var retVal = _userRepository.GetAll();
             if (retVal.Count() == 0)
             {
-               throw new NoObjectsFoundException("There are no users in database.");
+                throw new NoObjectsFoundException("There are no users in database.");
             }
             return retVal;
         }
@@ -48,7 +48,7 @@ namespace MainAPI.Services
 
             return retVal;
         }
-        
+
         public User Save(RegisterDTO obj)
         {
             var user = new User();
@@ -86,7 +86,7 @@ namespace MainAPI.Services
         public User UpdateRole(UserRoleUpdateDTO obj)
         {
             var user = _userRepository.findByEmail(obj.email);
-            if(user == null)
+            if (user == null)
             {
                 throw new KeyNotFoundException("User not found.");
             }

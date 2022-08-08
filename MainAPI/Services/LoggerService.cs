@@ -4,7 +4,7 @@ using ILogger = NLog.ILogger;
 
 namespace MainAPI.Services
 {
-    public class LoggerService:ILoggerManager
+    public class LoggerService : ILoggerManager
     {
         private static ILogger logger = LogManager.GetCurrentClassLogger();
         public void LogDebug(string message) => logger.Debug(message);
